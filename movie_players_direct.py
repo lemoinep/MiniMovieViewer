@@ -1,3 +1,5 @@
+# Author(s): Dr. Patrick Lemoine
+
 import tkinter as tk
 from tkinter import ttk, filedialog
 import cv2
