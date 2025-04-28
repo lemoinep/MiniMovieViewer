@@ -38,13 +38,13 @@ class VideoPlayer:
         button_frame = tk.Frame(self.master, bg="#333333")  
         button_frame.pack()
 
-        self.select_video_button = tk.Button(button_frame, text="Sélectionner vidéo", command=self.select_video, bg="#444444", fg="white")
+        self.select_video_button = tk.Button(button_frame, text="Select video", command=self.select_video, bg="#444444", fg="white")
         self.select_video_button.pack(side="left")
 
         self.play_button = tk.Button(button_frame, text="Play", command=self.play, state="disabled", bg="#444444", fg="white")
         self.play_button.pack(side="left")
 
-        self.capture_button = tk.Button(button_frame, text="Capture fenêtre", command=self.capture_window, state="disabled", bg="#444444", fg="white")
+        self.capture_button = tk.Button(button_frame, text="Window capture", command=self.capture_window, state="disabled", bg="#444444", fg="white")
         self.capture_button.pack(side="left")
 
         self.crop_button = tk.Button(button_frame, text="Crop Image", command=self.crop_image, state="disabled", bg="#444444", fg="white")
@@ -57,7 +57,7 @@ class VideoPlayer:
          
 
     def select_video(self):
-        self.video_path = filedialog.askopenfilename(filetypes=[("Fichiers vidéo", "*.mp4 *.avi *.mov *.webm")])
+        self.video_path = filedialog.askopenfilename(filetypes=[("Files video", "*.mp4 *.avi *.mov *.webm")])
         if self.video_path:
             self.play_button["state"] = "normal"
             self.capture_button["state"] = "normal"
@@ -93,7 +93,7 @@ class VideoPlayer:
             os.makedirs("captures")
         
         ImageGrab.grab(bbox=(x, y, x1, y1)).save(f"captures/window_capture_{self.capture_count}.jpg")
-        print(f"Capture de la fenêtre {self.capture_count} sauvegardée.")
+        print(f"Saved window capture {self.capture_count}")
         self.capture_count += 1
 
     def crop_image(self):
@@ -127,7 +127,7 @@ class VideoPlayer:
             os.makedirs("captures")
         
         cv2.imwrite(f"captures/cropped_image_{self.capture_count}.jpg", cropped_img)
-        print(f"Image découpée {self.capture_count} sauvegardée.")
+        print(f"Savec {self.capture_count} cut image.")
         self.capture_count += 1
         
     def exit_app(self):

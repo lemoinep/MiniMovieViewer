@@ -1,12 +1,12 @@
 # Author(s): Dr. Patrick Lemoine
 
 import tkinter as tk
-from tkinter import ttk, filedialog
+#from tkinter import ttk, filedialog
 import cv2
 import os
 import pygame
-import threading
-import time
+#import threading
+#import time
 from PIL import Image, ImageTk
 import sys
 
@@ -58,7 +58,7 @@ class VideoPlayer:
         button_frame = tk.Frame(self.master)
         button_frame.pack()
 
-        self.select_video_button = tk.Button(button_frame, text="Sélectionner vidéo", command=self.select_video, bg="#444444", fg="white")
+        self.select_video_button = tk.Button(button_frame, text="Select video", command=self.select_video, bg="#444444", fg="white")
         self.select_video_button.pack(side="left")
 
         self.play_button = tk.Button(button_frame, text="Play", command=self.play, state="disabled", bg="#444444", fg="white")
@@ -70,10 +70,10 @@ class VideoPlayer:
         self.capture_button = tk.Button(button_frame, text="Capture", command=self.capture_frame, state="disabled", bg="#444444", fg="white")
         self.capture_button.pack(side="left")
         
-        self.prev_frame_button = tk.Button(button_frame, text="Frame précédent", command=self.prev_frame, state="disabled", bg="#444444", fg="white")
+        self.prev_frame_button = tk.Button(button_frame, text="Previous", command=self.prev_frame, state="disabled", bg="#444444", fg="white")
         self.prev_frame_button.pack(side="left")
 
-        self.next_frame_button = tk.Button(button_frame, text="Frame suivant", command=self.next_frame, state="disabled", bg="#444444", fg="white")
+        self.next_frame_button = tk.Button(button_frame, text="Next", command=self.next_frame, state="disabled", bg="#444444", fg="white")
         self.next_frame_button.pack(side="left")
         
         self.exit_button = tk.Button(button_frame, text="Exit", command=self.exit_app, bg="#444444", fg="white")
@@ -84,7 +84,7 @@ class VideoPlayer:
 
 
     def select_video(self):
-        self.video_path = filedialog.askopenfilename(filetypes=[("Fichiers vidéo", "*.mp4 *.avi *.mov *.webm")])
+        self.video_path = filedialog.askopenfilename(filetypes=[("Files video", "*.mp4 *.avi *.mov *.webm")])
         if self.video_path:
             self.play_button["state"] = "normal"
             self.pause_button["state"] = "normal"
@@ -159,7 +159,6 @@ class VideoPlayer:
                 self.canvas.config(image=photo)
                 self.canvas.image = photo
                 
-                # Mettre à jour la position du slider
                 self.slider.set(int(self.cap.get(cv2.CAP_PROP_POS_FRAMES)))
                 self.current_frame = int(self.cap.get(cv2.CAP_PROP_POS_FRAMES))
 
@@ -187,7 +186,6 @@ class VideoPlayer:
                     self.canvas.config(image=photo)
                     self.canvas.image = photo
                     
-                    # Mettre à jour la position du slider
                     self.slider.set(int(self.cap.get(cv2.CAP_PROP_POS_FRAMES)))
                     self.current_frame = int(self.cap.get(cv2.CAP_PROP_POS_FRAMES))
 
@@ -223,7 +221,7 @@ class VideoPlayer:
                 video_name = os.path.splitext(os.path.basename(self.video_path))[0]
                 frame_number = int(self.cap.get(cv2.CAP_PROP_POS_FRAMES))
                 cv2.imwrite(f"captures/{video_name}_frame_{frame_number}.jpg", frame)
-                print(f"Frame {frame_number} capturée et sauvegardée.")
+                print(f"Frame {frame_number} captured and saved.")
                 
     def exit_app(self):
         self.master.destroy()
