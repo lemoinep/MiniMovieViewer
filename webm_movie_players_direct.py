@@ -8,6 +8,7 @@ import os
 from PIL import ImageGrab
 import numpy as np
 import sys
+import argparse
 
 class VideoPlayer:
     def __init__(self, master, video_path=None):
@@ -136,12 +137,16 @@ class VideoPlayer:
     def exit_app_key(self, event):
         self.master.destroy()
 
-if __name__ == "__main__":
-    if len(sys.argv) > 1:
-        video_path = sys.argv[1]
-    else:
-        video_path = None
 
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description="MOVIE-PLAYERS-WEBM")
+    parser.add_argument("--Path", type=str, default=None, help="Path to the folder containing file")
+    parser.add_argument("--Name", type=str, default=None, help="File Name")
+    args = parser.parse_args()
+    path=args.Path
+    name=args.Name
+    video_path = path+"/"+name
     root = tk.Tk()
     player = VideoPlayer(root, video_path)
     root.mainloop()
+    
